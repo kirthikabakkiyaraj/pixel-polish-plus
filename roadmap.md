@@ -1,0 +1,6 @@
+- [ ] Bring the linked frontend into the workspace preview without altering backend behavior.
+- [ ] Centralize every lucide icon import and update all frontend consumers.
+- [ ] Polish Agent chat defaults, entry animation, and reply point formatting.
+- [ ] Replace Upcoming Today spinner with skeleton/loading and item entrance states.
+- [ ] Add reusable scroll reveal animations and desktop-only custom cursor.
+- [ ] Verify the frontend build and key desktop/mobile screens.
