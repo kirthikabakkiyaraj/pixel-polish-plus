@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Download, Trash2, FileText, Search, Bell, XCircle, CheckCircle2 } from "lucide-react";
+import { Icons } from "../components/ui/Icons";ll, Icons.xCircle, Icons.checkCircle2 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { artifactApi } from "../services/artifact.api";
 
@@ -50,10 +48,10 @@ function showDownloadedContent(content, name) {
 export default function ArtifactPreview() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [toast, setToast] = useState(null);
+  const [item, setItem] = Icons.useState(null);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+  const [toast, setToast] = Icons.useState(null);
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
@@ -87,7 +85,7 @@ export default function ArtifactPreview() {
       showDownloadedContent(res?.data ?? res, item.name);
       showToast("Artifact downloaded");
     } catch (err) {
-      showToast(err.message || "Download failed", "error");
+      showToast(err.message || "Icons.download failed", "error");
     }
   };
 
@@ -108,10 +106,10 @@ export default function ArtifactPreview() {
       {/* Top Navbar */}
         <div className="flex items-center justify-end gap-4">
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <Search className="w-4 h-4 text-gray-500" />
+            <Icons.search className="w-4 h-4 text-gray-500" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-            <Bell className="w-4 h-4 text-gray-500" />
+            <Icons.bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
@@ -146,7 +144,7 @@ export default function ArtifactPreview() {
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
-                  <FileText className="w-5 h-5 text-white" />
+                  <Icons.fileText className="w-5 h-5 text-white" />
                 </div>
                 <div className="min-w-0">
                   <h1 className="text-lg font-bold text-gray-900 truncate">
@@ -162,14 +160,14 @@ export default function ArtifactPreview() {
                   onClick={handleDownload}
                   className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  Download
+                  <Icons.download className="w-3.5 h-3.5" />
+                  Icons.download
                 </button>
                 <button
                   onClick={handleDelete}
                   className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(239,68,68,0.25)] active:scale-95 transition-all duration-200 ease-out"
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <Icons.trash2 className="w-3.5 h-3.5" />
                   Delete
                 </button>
               </div>
@@ -235,9 +233,9 @@ export default function ArtifactPreview() {
             }`}
           >
             {toast.type === "error" ? (
-              <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+              <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
             ) : (
-              <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+              <Icons.checkCircle2 className="w-4 h-4 text-green-500 shrink-0" />
             )}
             <p className="text-xs font-medium text-gray-800">{toast.message}</p>
           </div>

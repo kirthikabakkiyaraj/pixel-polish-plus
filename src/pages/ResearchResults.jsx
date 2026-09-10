@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Search, Bell, SearchX, Loader2 } from "lucide-react";
+import { Icons } from "../components/ui/Icons";2 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { aiApi } from "../services/ai.api";
 
@@ -34,7 +33,7 @@ export default function ResearchResults() {
             <Search className="w-4 h-4 text-gray-500" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-            <Bell className="w-4 h-4 text-gray-500" />
+            <Icons.bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
@@ -65,7 +64,7 @@ export default function ResearchResults() {
             className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-900 to-purple-600 hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50 flex items-center gap-2"
           >
             {loading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Icons.loader2 className="w-4 h-4 animate-spin" />
             ) : (
               <Search className="w-4 h-4" />
             )}
@@ -75,7 +74,7 @@ export default function ResearchResults() {
 
         {error && (
           <div className="bg-white rounded-xl shadow-sm p-8 text-center border border-red-100">
-            <SearchX className="w-8 h-8 text-red-400 mx-auto mb-2" />
+            <Icons.searchX className="w-8 h-8 text-red-400 mx-auto mb-2" />
             <p className="text-sm text-gray-500">{error}</p>
           </div>
         )}

@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { Search, Bell, Plus, X, Trash2, Pencil, Calendar, CheckCircle2, XCircle, Power } from "lucide-react";
+import { Icons } from "../components/ui/Icons";r, Icons.checkCircle2, Icons.xCircle, Icons.power } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { scheduleApi } from "../services/schedule.api";
 import { taskApi } from "../services/task.api";
@@ -38,18 +37,18 @@ function enabledBadge(enabled) {
 const emptyForm = { taskId: "", frequency: "once", nextRunAt: "" };
 
 export default function Schedules() {
-  const [schedules, setSchedules] = useState([]);
-  const [tasks, setTasks] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [toast, setToast] = useState(null);
+  const [schedules, setSchedules] = Icons.useState([]);
+  const [tasks, setTasks] = Icons.useState({});
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+  const [toast, setToast] = Icons.useState(null);
   const initRef = useRef(false);
   const toastTimer = useRef(null);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editing, setEditing] = useState(null);
-  const [form, setForm] = useState(emptyForm);
-  const [saving, setSaving] = useState(false);
+  const [modalOpen, setModalOpen] = Icons.useState(false);
+  const [editing, setEditing] = Icons.useState(null);
+  const [form, setForm] = Icons.useState(emptyForm);
+  const [saving, setSaving] = Icons.useState(false);
 
   const showToast = (message, type = "success") => {
     clearTimeout(toastTimer.current);
@@ -57,9 +56,9 @@ export default function Schedules() {
     toastTimer.current = setTimeout(() => setToast(null), 3000);
   };
 
-  useEffect(() => () => clearTimeout(toastTimer.current), []);
+  Icons.useEffect(() => () => clearTimeout(toastTimer.current), []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     if (!initRef.current) {
       initRef.current = true;
       scheduleApi
@@ -75,7 +74,7 @@ export default function Schedules() {
     }
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     taskApi
       .getAll()
@@ -171,7 +170,7 @@ export default function Schedules() {
             <Search className="w-4 h-4 text-gray-500" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-            <Bell className="w-4 h-4 text-gray-500" />
+            <Icons.bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
@@ -192,7 +191,7 @@ export default function Schedules() {
             onClick={openCreate}
             className="flex items-center gap-2 bg-gradient-to-r from-purple-900 to-purple-600 text-white text-xs font-semibold px-4 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Icons.plus className="w-3.5 h-3.5" />
             New Schedule
           </button>
         </div>
@@ -206,7 +205,7 @@ export default function Schedules() {
           </div>
         ) : error ? (
           <div className="bg-white rounded-xl shadow-sm p-8 text-center">
-            <XCircle className="w-8 h-8 text-red-400 mx-auto mb-2" />
+            <Icons.xCircle className="w-8 h-8 text-red-400 mx-auto mb-2" />
             <p className="text-sm text-red-500">{error}</p>
           </div>
         ) : schedules.length === 0 ? (
@@ -225,7 +224,7 @@ export default function Schedules() {
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
-                      <Calendar className="w-4 h-4 text-white" />
+                      <Icons.calendar className="w-4 h-4 text-white" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-gray-900 truncate max-w-[360px]">
@@ -248,7 +247,7 @@ export default function Schedules() {
                       title="Edit schedule"
                       className="p-2 rounded-lg text-gray-400 hover:text-purple-600 hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.3)] transition-all duration-200 ease-out"
                     >
-                      <Pencil className="w-4 h-4" />
+                      <Icons.pencil className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleToggle(schedule)}
@@ -259,14 +258,14 @@ export default function Schedules() {
                           : "text-gray-400 hover:bg-gray-100 hover:-translate-y-0.5 hover:scale-[1.02]"
                       }`}
                     >
-                      <Power className="w-4 h-4" />
+                      <Icons.power className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(schedule)}
                       title="Delete schedule"
                       className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(239,68,68,0.2)] transition-all duration-200 ease-out"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Icons.trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -287,7 +286,7 @@ export default function Schedules() {
                   onClick={() => setModalOpen(false)}
                   className="p-1 rounded-lg hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out"
                 >
-                  <X className="w-4 h-4 text-gray-400" />
+                  <Icons.x className="w-4 h-4 text-gray-400" />
                 </button>
               </div>
 
@@ -381,9 +380,9 @@ export default function Schedules() {
               }`}
             >
               {toast.type === "error" ? (
-                <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+                <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
               ) : (
-                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                <Icons.checkCircle2 className="w-4 h-4 text-green-500 shrink-0" />
               )}
               <p className="text-xs font-medium text-gray-800">{toast.message}</p>
             </div>

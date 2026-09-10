@@ -1,12 +1,5 @@
-﻿import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Search,
-  Bell,
-  HelpCircle,
-  User,
-  Settings,
-  LogOut,
+import { Icons } from "../../components/ui/Icons";settings,
+  Icons.logOut,
 } from "lucide-react";
 import { searchData } from "../../data/searchData";
 import { activityApi } from "../../services/activity.api";
@@ -50,12 +43,12 @@ function formatRelativeTime(iso) {
 export default function TopBar({ showSearch = true, showHelp = true, rightContent = null }) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const [openDropdown, setOpenDropdown] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [notifications, setNotifications] = useState([]);
-  const [taskSearch, setTaskSearch] = useState([]);
+  const [openDropdown, setOpenDropdown] = Icons.useState(null);
+  const [searchQuery, setSearchQuery] = Icons.useState("");
+  const [notifications, setNotifications] = Icons.useState([]);
+  const [taskSearch, setTaskSearch] = Icons.useState([]);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     taskApi
       .getAll()
@@ -78,7 +71,7 @@ export default function TopBar({ showSearch = true, showHelp = true, rightConten
     };
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     activityApi
       .getAll()
@@ -113,7 +106,7 @@ export default function TopBar({ showSearch = true, showHelp = true, rightConten
 
   const hasUnread = notifications.some((n) => !n.read);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") { setOpenDropdown(null); }
     };
@@ -186,8 +179,8 @@ export default function TopBar({ showSearch = true, showHelp = true, rightConten
     : [];
 
   const displayName = user
-    ? [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email?.split("@")[0] || "User"
-    : "User";
+    ? [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email?.split("@")[0] || "Icons.user"
+    : "Icons.user";
   const avatarLetter = (displayName[0] || "A").toUpperCase();
 
   return (
@@ -263,10 +256,10 @@ onClick={() => toggleDropdown("search")}
         <button
           onClick={() => { setOpenDropdown(null); navigate("/user-guide"); }}
           className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out"
-          title="Open User Guide"
-          aria-label="Open User Guide"
+          title="Open Icons.user Guide"
+          aria-label="Open Icons.user Guide"
         >
-          <HelpCircle className="w-4 h-4 text-gray-500" />
+          <Icons.helpCircle className="w-4 h-4 text-gray-500" />
         </button>
       )}
 
@@ -275,7 +268,7 @@ onClick={() => toggleDropdown("search")}
 onClick={() => toggleDropdown("bell")}
           className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative"
         >
-          <Bell className="w-4 h-4 text-gray-500" />
+          <Icons.bell className="w-4 h-4 text-gray-500" />
           {hasUnread && (
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           )}
@@ -360,15 +353,15 @@ onClick={() => toggleDropdown("bell")}
                 onClick={() => { navigate("/profile"); setOpenDropdown(null); }}
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 hover:bg-purple-50 transition text-left"
               >
-                <User className="w-4 h-4 text-gray-400" />
+                <Icons.user className="w-4 h-4 text-gray-400" />
                 Profile
               </button>
               <button
                 onClick={() => { navigate("/settings"); setOpenDropdown(null); }}
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 hover:bg-purple-50 transition text-left"
               >
-                <Settings className="w-4 h-4 text-gray-400" />
-                Settings
+                <Icons.settings className="w-4 h-4 text-gray-400" />
+                Icons.settings
               </button>
             </div>
             <div className="border-t border-gray-100 py-1">
@@ -376,7 +369,7 @@ onClick={() => toggleDropdown("bell")}
                 onClick={() => { logout(); navigate("/login"); setOpenDropdown(null); }}
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-red-600 hover:bg-red-50 transition text-left"
               >
-                <LogOut className="w-4 h-4" />
+                <Icons.logOut className="w-4 h-4" />
                 Log Out
               </button>
             </div>

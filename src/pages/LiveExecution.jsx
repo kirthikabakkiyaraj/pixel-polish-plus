@@ -1,9 +1,4 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import {
-  Search,
-  Filter,
-  ChevronDown,
+import { Icons } from "../components/ui/Icons";,
 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { executionApi } from "../services/execution.api";
@@ -80,15 +75,15 @@ const eventColors = {
 export default function LiveExecution() {
   const { taskId } = useParams();
   const sse = useSSE(taskId);
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [executions, setExecutions] = useState([]);
-  const [tasks, setTasks] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showAll, setShowAll] = useState(false);
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [filterAgent, setFilterAgent] = useState("All");
+  const [activeFilter, setActiveFilter] = Icons.useState("All");
+  const [executions, setExecutions] = Icons.useState([]);
+  const [tasks, setTasks] = Icons.useState({});
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+  const [searchQuery, setSearchQuery] = Icons.useState("");
+  const [showAll, setShowAll] = Icons.useState(false);
+  const [filterOpen, setFilterOpen] = Icons.useState(false);
+  const [filterAgent, setFilterAgent] = Icons.useState("All");
 
   useEffect(() => {
     let cancelled = false;
@@ -185,7 +180,7 @@ export default function LiveExecution() {
                 onClick={() => setFilterOpen((p) => !p)}
                 className="p-2 rounded-lg border border-gray-200 bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out"
               >
-                <Filter className="w-4 h-4 text-gray-500" />
+                <Icons.filter className="w-4 h-4 text-gray-500" />
               </button>
               {filterOpen && (
                 <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 z-50 p-4">
@@ -202,7 +197,7 @@ export default function LiveExecution() {
                           <option key={a} value={a}>{a}</option>
                         ))}
                       </select>
-                      <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400 pointer-events-none" />
+                      <Icons.chevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400 pointer-events-none" />
                     </div>
                   </div>
                   <button
@@ -217,7 +212,7 @@ export default function LiveExecution() {
           </div>
         </div>
 
-        {/* Filter tabs */}
+        {/* Icons.filter tabs */}
         <div className="flex gap-2">
           {filters.map((f) => (
             <button

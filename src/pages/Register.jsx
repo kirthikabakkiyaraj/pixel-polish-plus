@@ -1,6 +1,4 @@
-import { useState, useContext, useRef, useEffect, useCallback } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { User, Mail, Lock, ArrowRight, LayoutDashboard, Eye, EyeOff, CheckCircle2 } from "lucide-react";
+import { Icons } from "../components/ui/Icons";tDashboard, Icons.eye, Icons.eyeOff, Icons.checkCircle2 } from "lucide-react";
 import robotMascot from "../assets/robot-mascot.png";
 import { AuthContext } from "../context/AuthContext";
 import GoogleSignInButton from "../components/auth/GoogleSignInButton";
@@ -9,33 +7,33 @@ const OTP_LENGTH = 6;
 
 export default function Register() {
   const navigate = useNavigate();
-  const { register, sendRegistrationOtp, verifyRegistrationOtp, loginWithGoogle } = useContext(AuthContext);
+  const { register, sendRegistrationOtp, verifyRegistrationOtp, loginWithGoogle } = Icons.useContext(AuthContext);
 
   // Step 1 = email, Step 2 = OTP verification, Step 3 = password/details.
-  const [step, setStep] = useState(1);
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [googleSubmitting, setGoogleSubmitting] = useState(false);
+  const [step, setStep] = Icons.useState(1);
+  const [email, setEmail] = Icons.useState("");
+  const [name, setName] = Icons.useState("");
+  const [password, setPassword] = Icons.useState("");
+  const [confirmPassword, setConfirmPassword] = Icons.useState("");
+  const [showPassword, setShowPassword] = Icons.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = Icons.useState(false);
+  const [error, setError] = Icons.useState("");
+  const [submitting, setSubmitting] = Icons.useState(false);
+  const [googleSubmitting, setGoogleSubmitting] = Icons.useState(false);
 
   // The short-lived email-verification ticket, kept only in memory for the next
   // step in this same session (never stored in localStorage).
-  const [verificationTicket, setVerificationTicket] = useState("");
+  const [verificationTicket, setVerificationTicket] = Icons.useState("");
 
   // OTP verification state
-  const [isSendingOtp, setIsSendingOtp] = useState(false);
-  const [otpDigits, setOtpDigits] = useState(Array(OTP_LENGTH).fill(""));
-  const [otpError, setOtpError] = useState("");
-  const [resendCooldown, setResendCooldown] = useState(0);
-  const otpRefs = useRef([]);
-  const cooldownTimer = useRef(null);
+  const [isSendingOtp, setIsSendingOtp] = Icons.useState(false);
+  const [otpDigits, setOtpDigits] = Icons.useState(Array(OTP_LENGTH).fill(""));
+  const [otpError, setOtpError] = Icons.useState("");
+  const [resendCooldown, setResendCooldown] = Icons.useState(0);
+  const otpRefs = Icons.useRef([]);
+  const cooldownTimer = Icons.useRef(null);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     return () => clearInterval(cooldownTimer.current);
   }, []);
 
@@ -232,7 +230,7 @@ export default function Register() {
 
       {/* Top label */}
       <div className="flex items-center gap-2 text-gray-600 text-sm font-medium mb-6 max-w-4xl mx-auto">
-        <LayoutDashboard className="w-4 h-4" />
+        <Icons.layoutDashboard className="w-4 h-4" />
         Login / Register
       </div>
 
@@ -291,7 +289,7 @@ export default function Register() {
                   Email Address
                 </label>
                 <div className="mt-1 flex items-center border rounded-lg px-3 py-2 bg-gray-50">
-                  <Mail className="w-4 h-4 text-gray-400 mr-2" />
+                  <Icons.mail className="w-4 h-4 text-gray-400 mr-2" />
                   <input
                     type="email"
                     placeholder="you@company.com"
@@ -313,7 +311,7 @@ export default function Register() {
                 {isSendingOtp ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <>Send Code <ArrowRight className="w-4 h-4" /></>
+                  <>Send Code <Icons.arrowRight className="w-4 h-4" /></>
                 )}
               </button>
             </div>
@@ -376,7 +374,7 @@ export default function Register() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex items-center justify-between text-[11px] text-gray-500 mb-1">
                 <span className="flex items-center gap-1 text-green-600 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> {email} verified
+                  <Icons.checkCircle2 className="w-3.5 h-3.5" /> {email} verified
                 </span>
                 <button
                   type="button"
@@ -409,7 +407,7 @@ export default function Register() {
                   Password
                 </label>
                 <div className="mt-1 flex items-center border rounded-lg px-3 py-2 bg-gray-50">
-                  <Lock className="w-4 h-4 text-gray-400 mr-2" />
+                  <Icons.lock className="w-4 h-4 text-gray-400 mr-2" />
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
@@ -423,7 +421,7 @@ export default function Register() {
                     onClick={() => setShowPassword((v) => !v)}
                     className="ml-2 text-gray-400 hover:text-gray-600 transition"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <Icons.eyeOff className="w-4 h-4" /> : <Icons.eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
@@ -433,7 +431,7 @@ export default function Register() {
                   Confirm Password
                 </label>
                 <div className="mt-1 flex items-center border rounded-lg px-3 py-2 bg-gray-50">
-                  <Lock className="w-4 h-4 text-gray-400 mr-2" />
+                  <Icons.lock className="w-4 h-4 text-gray-400 mr-2" />
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="••••••••"
@@ -447,7 +445,7 @@ export default function Register() {
                     onClick={() => setShowConfirmPassword((v) => !v)}
                     className="ml-2 text-gray-400 hover:text-gray-600 transition"
                   >
-                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showConfirmPassword ? <Icons.eyeOff className="w-4 h-4" /> : <Icons.eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
@@ -460,7 +458,7 @@ export default function Register() {
                 {submitting ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <>Create Account <ArrowRight className="w-4 h-4" /></>
+                  <>Create Account <Icons.arrowRight className="w-4 h-4" /></>
                 )}
               </button>
               <p className="text-[11px] text-gray-400">Your email has already been verified — no further code will be sent.</p>

@@ -1,13 +1,6 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import {
-  MoreHorizontal,
-  Activity,
-  CheckCircle2,
-  XCircle,
-  ClipboardCheck,
-  Users,
-  CirclePlay,
+import { Icons } from "../components/ui/Icons";k,
+  Icons.users,
+  Icons.circlePlay,
 } from "lucide-react";
 import {
   AreaChart,
@@ -61,20 +54,20 @@ function percentValue(value) {
 
 function activityMeta(type) {
   const t = type || "";
-  if (!t) return { label: "Logged", color: "bg-gray-100 text-gray-600", icon: <CheckCircle2 className="w-4 h-4 text-gray-500" /> };
-  if (t.includes("failed")) return { label: "Failed", color: "bg-red-100 text-red-700", icon: <XCircle className="w-4 h-4 text-red-500" /> };
-  if (t.includes("cancell")) return { label: "Cancelled", color: "bg-gray-100 text-gray-600", icon: <Activity className="w-4 h-4 text-gray-500" /> };
-  if (t.includes("complete")) return { label: "Completed", color: "bg-green-100 text-green-700", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("start")) return { label: "Running", color: "bg-purple-100 text-purple-700", icon: <Activity className="w-4 h-4 text-purple-500" /> };
-  if (t.includes("created")) return { label: "Created", color: "bg-green-100 text-green-700", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("deleted")) return { label: "Deleted", color: "bg-gray-100 text-gray-600", icon: <XCircle className="w-4 h-4 text-gray-500" /> };
-  if (t.includes("requested")) return { label: "Requested", color: "bg-yellow-100 text-yellow-700", icon: <Activity className="w-4 h-4 text-yellow-500" /> };
-  if (t.includes("granted")) return { label: "Approved", color: "bg-green-100 text-green-700", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("rejected")) return { label: "Rejected", color: "bg-red-100 text-red-700", icon: <XCircle className="w-4 h-4 text-red-500" /> };
-  if (t.includes("ai_")) return { label: "AI", color: "bg-purple-100 text-purple-700", icon: <Activity className="w-4 h-4 text-purple-500" /> };
-  if (t.includes("logged_in")) return { label: "Login", color: "bg-blue-100 text-blue-700", icon: <CheckCircle2 className="w-4 h-4 text-blue-500" /> };
-  if (t.includes("registered")) return { label: "Signup", color: "bg-blue-100 text-blue-700", icon: <CheckCircle2 className="w-4 h-4 text-blue-500" /> };
-  return { label: t, color: "bg-gray-100 text-gray-600", icon: <CheckCircle2 className="w-4 h-4 text-gray-500" /> };
+  if (!t) return { label: "Logged", color: "bg-gray-100 text-gray-600", icon: <Icons.checkCircle2 className="w-4 h-4 text-gray-500" /> };
+  if (t.includes("failed")) return { label: "Failed", color: "bg-red-100 text-red-700", icon: <Icons.xCircle className="w-4 h-4 text-red-500" /> };
+  if (t.includes("cancell")) return { label: "Cancelled", color: "bg-gray-100 text-gray-600", icon: <Icons.activity className="w-4 h-4 text-gray-500" /> };
+  if (t.includes("complete")) return { label: "Completed", color: "bg-green-100 text-green-700", icon: <Icons.checkCircle2 className="w-4 h-4 text-green-500" /> };
+  if (t.includes("start")) return { label: "Running", color: "bg-purple-100 text-purple-700", icon: <Icons.activity className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("created")) return { label: "Created", color: "bg-green-100 text-green-700", icon: <Icons.checkCircle2 className="w-4 h-4 text-green-500" /> };
+  if (t.includes("deleted")) return { label: "Deleted", color: "bg-gray-100 text-gray-600", icon: <Icons.xCircle className="w-4 h-4 text-gray-500" /> };
+  if (t.includes("requested")) return { label: "Requested", color: "bg-yellow-100 text-yellow-700", icon: <Icons.activity className="w-4 h-4 text-yellow-500" /> };
+  if (t.includes("granted")) return { label: "Approved", color: "bg-green-100 text-green-700", icon: <Icons.checkCircle2 className="w-4 h-4 text-green-500" /> };
+  if (t.includes("rejected")) return { label: "Rejected", color: "bg-red-100 text-red-700", icon: <Icons.xCircle className="w-4 h-4 text-red-500" /> };
+  if (t.includes("ai_")) return { label: "AI", color: "bg-purple-100 text-purple-700", icon: <Icons.activity className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("logged_in")) return { label: "Login", color: "bg-blue-100 text-blue-700", icon: <Icons.checkCircle2 className="w-4 h-4 text-blue-500" /> };
+  if (t.includes("registered")) return { label: "Signup", color: "bg-blue-100 text-blue-700", icon: <Icons.checkCircle2 className="w-4 h-4 text-blue-500" /> };
+  return { label: t, color: "bg-gray-100 text-gray-600", icon: <Icons.checkCircle2 className="w-4 h-4 text-gray-500" /> };
 }
 
 export default function Dashboard() {
@@ -86,11 +79,11 @@ export default function Dashboard() {
     : "User";
 
   // API data state
-  const [summary, setSummary] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [summary, setSummary] = Icons.useState(null);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     dashboardApi
       .getSummary()
@@ -121,7 +114,7 @@ export default function Dashboard() {
           label: "Active Tasks",
           value: String(summary.activeTasks ?? 0),
           to: "/active-tasks",
-          icon: <ClipboardCheck className="w-5 h-5 text-white" />,
+          icon: <Icons.clipboardCheck className="w-5 h-5 text-white" />,
           badge: "bg-gradient-to-br from-purple-600 to-purple-700 shadow-[0_8px_18px_-8px_rgba(124,58,237,0.5)]",
           ...statTrend("activeTasks", summary.activeTasks ?? 0),
         },
@@ -129,7 +122,7 @@ export default function Dashboard() {
           label: "Completed Tasks",
           value: String(summary.completedTasks ?? 0),
           to: "/completed-today",
-          icon: <CheckCircle2 className="w-5 h-5 text-white" />,
+          icon: <Icons.checkCircle2 className="w-5 h-5 text-white" />,
           badge: "bg-gradient-to-br from-purple-500 to-purple-600 shadow-[0_8px_18px_-8px_rgba(168,85,247,0.5)]",
           ...statTrend("completedTasks", summary.completedTasks ?? 0),
         },
@@ -137,7 +130,7 @@ export default function Dashboard() {
           label: "Pending Approvals",
           value: String(summary.pendingApprovals ?? 0),
           to: "/pending-approvals",
-          icon: <Users className="w-5 h-5 text-white" />,
+          icon: <Icons.users className="w-5 h-5 text-white" />,
           badge: "bg-gradient-to-br from-purple-400 to-purple-500 shadow-[0_8px_18px_-8px_rgba(192,132,252,0.5)]",
           ...statTrend("pendingApprovals", summary.pendingApprovals ?? 0),
         },
@@ -145,7 +138,7 @@ export default function Dashboard() {
           label: "Running Executions",
           value: String(summary.runningExecutions ?? 0),
           to: "/executions",
-          icon: <CirclePlay className="w-5 h-5 text-white" />,
+          icon: <Icons.circlePlay className="w-5 h-5 text-white" />,
           badge: "bg-gradient-to-br from-purple-300 to-purple-400 shadow-[0_8px_18px_-8px_rgba(216,180,254,0.5)]",
           ...statTrend("runningExecutions", summary.runningExecutions ?? 0),
         },
@@ -179,7 +172,7 @@ export default function Dashboard() {
   const displayActivities = (summary?.recentActivity || []).slice(0, 5).map((a) => {
     const meta = activityMeta(a.type);
     return {
-      name: a.message || a.type || "Activity",
+      name: a.message || a.type || "Icons.activity",
       sub: formatDate(a.createdAt),
       status: meta.label,
       color: meta.color,
@@ -240,7 +233,7 @@ export default function Dashboard() {
         </div>
       ) : error ? (
         <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
-          <XCircle className="w-8 h-8 text-red-400 mx-auto mb-2" />
+          <Icons.xCircle className="w-8 h-8 text-red-400 mx-auto mb-2" />
           <p className="text-sm text-red-600">{error}</p>
         </div>
       ) : (
@@ -269,11 +262,11 @@ export default function Dashboard() {
 
           {/* Charts Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Task Activity Chart */}
+            {/* Task Icons.activity Chart */}
             <div className="col-span-1 lg:col-span-2 bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.28)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold text-gray-900">
-                  Task Activity This Week
+                  Task Icons.activity This Week
                 </h2>
                 <button className="p-1 rounded hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out">
                   <MoreHorizontal className="w-4 h-4 text-gray-400" />
@@ -372,11 +365,11 @@ export default function Dashboard() {
 
           {/* Bottom Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Recent Activity */}
+            {/* Recent Icons.activity */}
             <div className="col-span-1 lg:col-span-2 bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col min-h-[340px] hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.28)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold text-gray-900">
-                  Recent Activity
+                  Recent Icons.activity
                 </h2>
                 <Link
                   to="/activity"
@@ -388,7 +381,7 @@ export default function Dashboard() {
               {displayActivities.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center gap-3 py-8">
                   <div className="w-10 h-10 rounded-xl bg-purple-50/80 flex items-center justify-center">
-                    <Activity className="w-5 h-5 text-purple-400" />
+                    <Icons.activity className="w-5 h-5 text-purple-400" />
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-gray-400">No recent activity</p>

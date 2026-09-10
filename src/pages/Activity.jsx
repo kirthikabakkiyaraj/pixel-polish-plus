@@ -1,5 +1,4 @@
-﻿import { useState, useEffect } from "react";
-import { Search, Bell, Trash2, CheckCircle2, XCircle, Activity as ActivityIcon, Bot, X, LogIn, RefreshCw } from "lucide-react";
+import { Icons } from "../components/ui/Icons";.bot, Icons.x, Icons.logIn, Icons.refreshCw } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { activityApi } from "../services/activity.api";
 
@@ -20,28 +19,28 @@ function timeAgo(value) {
 
 function typePresentation(type) {
   const t = type || "";
-  if (t.includes("failed")) return { label: "Failed", variant: "red", icon: <XCircle className="w-4 h-4 text-red-500" /> };
-  if (t.includes("cancell")) return { label: "Cancelled", variant: "gray", icon: <ActivityIcon className="w-4 h-4 text-gray-500" /> };
-  if (t.includes("completed")) return { label: "Completed", variant: "green", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("started")) return { label: "Started", variant: "purple", icon: <ActivityIcon className="w-4 h-4 text-purple-500" /> };
-  if (t.includes("created")) return { label: "Created", variant: "green", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("updated")) return { label: "Updated", variant: "blue", icon: <RefreshCw className="w-4 h-4 text-blue-500" /> };
-  if (t.includes("deleted")) return { label: "Deleted", variant: "gray", icon: <XCircle className="w-4 h-4 text-gray-500" /> };
-  if (t.includes("requested")) return { label: "Requested", variant: "yellow", icon: <ActivityIcon className="w-4 h-4 text-yellow-500" /> };
-  if (t.includes("granted")) return { label: "Granted", variant: "green", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("rejected")) return { label: "Rejected", variant: "red", icon: <XCircle className="w-4 h-4 text-red-500" /> };
-  if (t.includes("toggled")) return { label: "Toggled", variant: "blue", icon: <RefreshCw className="w-4 h-4 text-blue-500" /> };
-  if (t.includes("ai_")) return { label: "AI", variant: "purple", icon: <Bot className="w-4 h-4 text-purple-500" /> };
-  if (t.includes("logged_in")) return { label: "Login", variant: "blue", icon: <LogIn className="w-4 h-4 text-blue-500" /> };
-  if (t.includes("registered")) return { label: "Registered", variant: "blue", icon: <CheckCircle2 className="w-4 h-4 text-blue-500" /> };
-  return { label: t || "Activity", variant: "gray", icon: <ActivityIcon className="w-4 h-4 text-gray-500" /> };
+  if (t.includes("failed")) return { label: "Failed", variant: "red", icon: <Icons.xCircle className="w-4 h-4 text-red-500" /> };
+  if (t.includes("cancell")) return { label: "Cancelled", variant: "gray", icon: <Icons.activityIcon className="w-4 h-4 text-gray-500" /> };
+  if (t.includes("completed")) return { label: "Completed", variant: "green", icon: <Icons.checkCircle2 className="w-4 h-4 text-green-500" /> };
+  if (t.includes("started")) return { label: "Started", variant: "purple", icon: <Icons.activityIcon className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("created")) return { label: "Created", variant: "green", icon: <Icons.checkCircle2 className="w-4 h-4 text-green-500" /> };
+  if (t.includes("updated")) return { label: "Updated", variant: "blue", icon: <Icons.refreshCw className="w-4 h-4 text-blue-500" /> };
+  if (t.includes("deleted")) return { label: "Deleted", variant: "gray", icon: <Icons.xCircle className="w-4 h-4 text-gray-500" /> };
+  if (t.includes("requested")) return { label: "Requested", variant: "yellow", icon: <Icons.activityIcon className="w-4 h-4 text-yellow-500" /> };
+  if (t.includes("granted")) return { label: "Granted", variant: "green", icon: <Icons.checkCircle2 className="w-4 h-4 text-green-500" /> };
+  if (t.includes("rejected")) return { label: "Rejected", variant: "red", icon: <Icons.xCircle className="w-4 h-4 text-red-500" /> };
+  if (t.includes("toggled")) return { label: "Toggled", variant: "blue", icon: <Icons.refreshCw className="w-4 h-4 text-blue-500" /> };
+  if (t.includes("ai_")) return { label: "AI", variant: "purple", icon: <Icons.bot className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("logged_in")) return { label: "Login", variant: "blue", icon: <Icons.logIn className="w-4 h-4 text-blue-500" /> };
+  if (t.includes("registered")) return { label: "Registered", variant: "blue", icon: <Icons.checkCircle2 className="w-4 h-4 text-blue-500" /> };
+  return { label: t || "Activity", variant: "gray", icon: <Icons.activityIcon className="w-4 h-4 text-gray-500" /> };
 }
 
 export default function Activity() {
-  const [items, setItems] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-const [toast, setToast] = useState(null);
+  const [items, setItems] = Icons.useState(null);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+const [toast, setToast] = Icons.useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -81,7 +80,7 @@ const [toast, setToast] = useState(null);
           <Search className="w-4 h-4 text-gray-500" />
         </button>
         <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-          <Bell className="w-4 h-4 text-gray-500" />
+          <Icons.bell className="w-4 h-4 text-gray-500" />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
         </button>
         <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
@@ -104,7 +103,7 @@ const [toast, setToast] = useState(null);
         </div>
       ) : error ? (
         <div className="bg-red-50 border border-red-200 rounded-xl p-8 text-center">
-          <XCircle className="w-8 h-8 text-red-400 mx-auto mb-2" />
+          <Icons.xCircle className="w-8 h-8 text-red-400 mx-auto mb-2" />
           <p className="text-sm text-red-600">{error}</p>
         </div>
       ) : !items || items.length === 0 ? (
@@ -148,7 +147,7 @@ const [toast, setToast] = useState(null);
                     title="Delete activity"
                     className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(239,68,68,0.2)] transition-all duration-200 ease-out shrink-0"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Icons.trash2 className="w-4 h-4" />
                   </button>
                 </div>
               );
@@ -166,9 +165,9 @@ const [toast, setToast] = useState(null);
             }`}
           >
             {toast.includes("Activity deleted") ? (
-              <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+              <Icons.checkCircle2 className="w-4 h-4 text-green-500 shrink-0" />
             ) : (
-              <X className="w-4 h-4 text-red-500 shrink-0" />
+              <Icons.x className="w-4 h-4 text-red-500 shrink-0" />
             )}
             <p className="text-xs font-medium text-gray-800">{toast}</p>
           </div>

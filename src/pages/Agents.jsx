@@ -1,21 +1,9 @@
-import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import {
-  Send,
-  Mic,
-  X,
-  Plus,
-  Square,
-  FileText,
-  Image,
-  Bot,
-  CheckCircle2,
-  XCircle,
-  ChevronLeft,
-  ChevronRight,
-  Upload,
-  Loader,
-  Paperclip,
+import { Icons } from "../components/ui/Icons";le,
+  Icons.chevronLeft,
+  Icons.chevronRight,
+  Icons.upload,
+  Icons.loader,
+  Icons.paperclip,
 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import TopBar from "../components/layout/TopBar";
@@ -48,8 +36,8 @@ const AGENT_THREAD_ID = "data-extraction";
 
 // Menu items for the + button
 const MENU_ITEMS = [
-  { label: "Upload Files", icon: FileText, accept: "*/*" },
-  { label: "Photos", icon: Image, accept: "image/*" },
+  { label: "Icons.upload Files", icon: Icons.fileText, accept: "*/*" },
+  { label: "Photos", icon: Icons.image, accept: "image/*" },
   //{ label: "Screenshot", icon: Camera, accept: null },
 ];
 
@@ -63,11 +51,11 @@ const initialNewTask = () => ({
 
 export default function Agents() {
   const navigate = useNavigate();
-  const [scheduled, setScheduled] = useState([]);
-  const [tasksLoading, setTasksLoading] = useState(true);
-  const [tasksError, setTasksError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [newTask, setNewTask] = useState(initialNewTask());
+  const [scheduled, setScheduled] = Icons.useState([]);
+  const [tasksLoading, setTasksLoading] = Icons.useState(true);
+  const [tasksError, setTasksError] = Icons.useState(null);
+  const [showModal, setShowModal] = Icons.useState(false);
+  const [newTask, setNewTask] = Icons.useState(initialNewTask());
 
   useEffect(() => {
     let cancelled = false;
@@ -91,11 +79,11 @@ export default function Agents() {
   }, []);
 
   // Calendar state
-  const [calYear, setCalYear] = useState(() => new Date().getFullYear());
-  const [calMonth, setCalMonth] = useState(() => new Date().getMonth());
-  const [selectedDate, setSelectedDate] = useState(() => new Date().getDate());
+  const [calYear, setCalYear] = Icons.useState(() => new Date().getFullYear());
+  const [calMonth, setCalMonth] = Icons.useState(() => new Date().getMonth());
+  const [selectedDate, setSelectedDate] = Icons.useState(() => new Date().getDate());
 
-  const monthDays = useMemo(() => getMonthDays(calYear, calMonth), [calYear, calMonth]);
+  const monthDays = Icons.useMemo(() => getMonthDays(calYear, calMonth), [calYear, calMonth]);
 
   const prevMonth = () => {
     if (calMonth === 0) {
@@ -118,46 +106,46 @@ export default function Agents() {
   };
 
   // Chat state
-  const [messages, setMessages] = useState(initialMessages);
-  const [chatInput, setChatInput] = useState("");
-  const chatEndRef = useRef(null);
+  const [messages, setMessages] = Icons.useState(initialMessages);
+  const [chatInput, setChatInput] = Icons.useState("");
+  const chatEndRef = Icons.useRef(null);
 
   // Toast state
-  const [toast, setToast] = useState(null);
-  const toastTimer = useRef(null);
+  const [toast, setToast] = Icons.useState(null);
+  const toastTimer = Icons.useRef(null);
 
   // ---- NEW: menu & voice states ----
-  const [showMenu, setShowMenu] = useState(false);
-  const [voiceStatus, setVoiceStatus] = useState("idle");
-  const [liveTranscript, setLiveTranscript] = useState("");
-  const menuRef = useRef(null);
+  const [showMenu, setShowMenu] = Icons.useState(false);
+  const [voiceStatus, setVoiceStatus] = Icons.useState("idle");
+  const [liveTranscript, setLiveTranscript] = Icons.useState("");
+  const menuRef = Icons.useRef(null);
 
   // ---- File upload state ----
-  const fileInputRef = useRef(null);
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [uploadingFiles, setUploadingFiles] = useState(false);
+  const fileInputRef = Icons.useRef(null);
+  const [selectedFiles, setSelectedFiles] = Icons.useState([]);
+  const [uploadingFiles, setUploadingFiles] = Icons.useState(false);
 
   // ---- Pending composer attachments (not yet sent as a chat message) ----
-  const [composerAttachments, setComposerAttachments] = useState([]);
+  const [composerAttachments, setComposerAttachments] = Icons.useState([]);
 
   // ---- Voice recording refs ----
-  const mediaRecorderRef = useRef(null);
-  const streamRef = useRef(null);
-  const audioChunksRef = useRef([]);
-  const recordingMimeRef = useRef(null);
-  const voiceIdRef = useRef(0);
+  const mediaRecorderRef = Icons.useRef(null);
+  const streamRef = Icons.useRef(null);
+  const audioChunksRef = Icons.useRef([]);
+  const recordingMimeRef = Icons.useRef(null);
+  const voiceIdRef = Icons.useRef(0);
 
   // ---- Speech recognition refs ----
-  const recognitionRef = useRef(null);
-  const recognitionFinalRef = useRef("");
-  const recognitionInterimRef = useRef("");
-  const voiceFinishRef = useRef(false);
+  const recognitionRef = Icons.useRef(null);
+  const recognitionFinalRef = Icons.useRef("");
+  const recognitionInterimRef = Icons.useRef("");
+  const voiceFinishRef = Icons.useRef(false);
 
   // ---- Live waveform refs ----
-  const audioCtxRef = useRef(null);
-  const analyserRef = useRef(null);
-  const rafRef = useRef(null);
-  const waveformRef = useRef(null);
+  const audioCtxRef = Icons.useRef(null);
+  const analyserRef = Icons.useRef(null);
+  const rafRef = Icons.useRef(null);
+  const waveformRef = Icons.useRef(null);
   const WAVEFORM_BARS = 30;
 
   // Extract a human-friendly error message from an API error. The backend may
@@ -316,7 +304,7 @@ export default function Agents() {
     }
   };
 
-  const sendMessage = useCallback(async () => {
+  const sendMessage = Icons.useCallback(async () => {
     const text = chatInput.trim();
     if (!text && composerAttachments.length === 0) return;
     await performChatSend(text, composerAttachments);
@@ -390,7 +378,7 @@ export default function Agents() {
     }
   };
 
-  // Upload files (no typed message) and send them at once.
+  // Icons.upload files (no typed message) and send them at once.
   const sendFilesImmediately = async (files) => {
     setUploadingFiles(true);
     const uploaded = [];
@@ -432,7 +420,7 @@ export default function Agents() {
   };
   const attachmentImageUrl = (att) => att?.artifact?.content?.secureUrl || null;
 
-  // ---- Upload queued files ----
+  // ---- Icons.upload queued files ----
   const handleUploadFiles = async () => {
     if (selectedFiles.length === 0) return;
     setUploadingFiles(true);
@@ -568,7 +556,7 @@ export default function Agents() {
     }
 
     // Fallback: no transcript (no speech support or nothing recognized).
-    // Upload the audio and still send a message so the agent always replies.
+    // Icons.upload the audio and still send a message so the agent always replies.
     const ext = mime && mime.includes("mp4")
       ? "m4a"
       : mime && mime.includes("ogg")
@@ -648,7 +636,7 @@ export default function Agents() {
     }
   };
 
-  // ---- Mic: start / stop real recording ----
+  // ---- Icons.mic: start / stop real recording ----
   const startVoiceRecording = async () => {
     if (voiceStatus !== "idle") return;
     if (!window.MediaRecorder) {
@@ -757,7 +745,7 @@ export default function Agents() {
             <div className="flex-1 flex flex-col gap-3 overflow-y-auto max-h-[340px] mb-4">
               {messages.length === 0 && (
                 <div className="flex flex-col items-center justify-center gap-2 py-8 text-center">
-                  <Bot className="w-8 h-8 text-gray-300" />
+                  <Icons.bot className="w-8 h-8 text-gray-300" />
                   <p className="text-xs text-gray-400 max-w-[220px]">
                     Send a message to start a conversation with your agent.
                   </p>
@@ -768,7 +756,7 @@ export default function Agents() {
                   return (
                     <div key={msg.id} className="flex gap-2.5">
                       <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
-                        <Bot className="w-3.5 h-3.5 text-white" />
+                        <Icons.bot className="w-3.5 h-3.5 text-white" />
                       </div>
                       <div className="border border-purple-200 bg-purple-50/50 rounded-xl rounded-tl-sm px-4 py-3 max-w-md">
                         <p className="text-[10px] font-bold text-purple-700 uppercase tracking-wider mb-1.5">
@@ -786,7 +774,7 @@ export default function Agents() {
                   return (
                     <div key={msg.id} className="flex gap-2.5">
                       <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
-                        <Bot className="w-3.5 h-3.5 text-white" />
+                        <Icons.bot className="w-3.5 h-3.5 text-white" />
                       </div>
                       <div className="border border-red-200 bg-red-50/60 rounded-xl rounded-tl-sm px-4 py-3 max-w-md">
                         <p className="text-xs font-bold text-red-600 leading-relaxed">
@@ -800,7 +788,7 @@ export default function Agents() {
                   return (
                     <div key={msg.id} className="flex gap-2.5">
                       <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
-                        <Bot className="w-3.5 h-3.5 text-white" />
+                        <Icons.bot className="w-3.5 h-3.5 text-white" />
                       </div>
                       <div className="bg-gray-100 rounded-xl rounded-tl-sm px-3.5 py-2.5 max-w-md">
                         <p className="text-xs text-gray-700 leading-relaxed">
@@ -829,7 +817,7 @@ export default function Agents() {
                             />
                           ) : (
                             <div key={att.id} className="flex items-center gap-1.5">
-                              <Paperclip className="w-3.5 h-3.5 text-white/90" />
+                              <Icons.paperclip className="w-3.5 h-3.5 text-white/90" />
                               <p className="text-xs text-white">{att.name}</p>
                             </div>
                           );
@@ -863,7 +851,7 @@ export default function Agents() {
                           }
                           return (
                             <div key={att.id || i} className="flex items-center gap-1.5">
-                              <Paperclip className="w-3.5 h-3.5 text-white/90" />
+                              <Icons.paperclip className="w-3.5 h-3.5 text-white/90" />
                               <p className="text-xs text-white font-medium">{name}</p>
                             </div>
                           );
@@ -883,7 +871,7 @@ export default function Agents() {
                     <div key={msg.id} className="flex gap-2.5 justify-end">
                       <div className="bg-purple-600 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1">
                         <div className="flex items-center gap-1.5">
-                          <Mic className="w-3.5 h-3.5 text-white/90" />
+                          <Icons.mic className="w-3.5 h-3.5 text-white/90" />
                           <p className="text-xs text-white font-medium">Voice message</p>
                         </div>
                         <audio controls src={msg.url} className="w-56" />
@@ -932,7 +920,7 @@ export default function Agents() {
               onChange={handleFileInputChange}
             />
 
-            {/* Queued files + Upload */}
+            {/* Queued files + Icons.upload */}
             {selectedFiles.length > 0 && (
               <div className="flex flex-col gap-2 mb-2">
                 <div className="flex flex-wrap gap-2">
@@ -941,13 +929,13 @@ export default function Agents() {
                       key={i}
                       className="flex items-center gap-1.5 bg-purple-50 border border-purple-200 rounded-lg px-2.5 py-1.5 text-[11px] text-purple-700"
                     >
-                      <Paperclip className="w-3 h-3" />
+                      <Icons.paperclip className="w-3 h-3" />
                       {f.name}
                       <button
                         onClick={() => removeSelectedFile(i)}
                         className="text-purple-400 hover:text-purple-700 transition"
                       >
-                        <X className="w-3 h-3" />
+                        <Icons.x className="w-3 h-3" />
                       </button>
                     </span>
                   ))}
@@ -958,13 +946,13 @@ export default function Agents() {
                   className="flex items-center gap-1.5 w-fit px-3 py-1.5 text-[11px] font-semibold bg-purple-600 hover:bg-purple-700 text-white rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50"
                 >
                   {uploadingFiles ? (
-                    <Loader className="w-3 h-3 animate-spin" />
+                    <Icons.loader className="w-3 h-3 animate-spin" />
                   ) : (
-                    <Upload className="w-3 h-3" />
+                    <Icons.upload className="w-3 h-3" />
                   )}
                   {uploadingFiles
                     ? "Uploading..."
-                    : `Upload ${selectedFiles.length === 1 ? "File" : "Files"}`}
+                    : `Icons.upload ${selectedFiles.length === 1 ? "File" : "Files"}`}
                 </button>
               </div>
             )}
@@ -984,7 +972,7 @@ export default function Agents() {
                         className="w-10 h-10 object-cover rounded"
                       />
                     ) : (
-                      <Paperclip className="w-3.5 h-3.5" />
+                      <Icons.paperclip className="w-3.5 h-3.5" />
                     )}
                     <span className="max-w-[160px] truncate">{att.name}</span>
                     <button
@@ -992,7 +980,7 @@ export default function Agents() {
                       className="text-purple-400 hover:text-purple-700 transition"
                       title="Remove attachment"
                     >
-                      <X className="w-3 h-3" />
+                      <Icons.x className="w-3 h-3" />
                     </button>
                   </div>
                 ))}
@@ -1005,9 +993,9 @@ export default function Agents() {
                 <>
                   {/* Recording / processing replaces the text input with a live waveform */}
                   <div className="flex items-center gap-2 h-6 flex-1 min-w-0">
-                    <Mic className="w-4 h-4 text-purple-600 shrink-0" />
+                    <Icons.mic className="w-4 h-4 text-purple-600 shrink-0" />
                     {voiceStatus === "processing" && !liveTranscript ? (
-                      <Loader className="w-3.5 h-3.5 text-purple-600 animate-spin shrink-0" />
+                      <Icons.loader className="w-3.5 h-3.5 text-purple-600 animate-spin shrink-0" />
                     ) : null}
                     <span className="text-xs text-gray-500 min-w-0 truncate shrink">
                       {voiceStatus === "processing"
@@ -1035,18 +1023,18 @@ export default function Agents() {
                     title="Stop and send voice message"
                     aria-label="Stop recording and send"
                   >
-                    <Square className="w-4 h-4 text-white" />
+                    <Icons.square className="w-4 h-4 text-white" />
                   </button>
                 </>
               ) : (
                 <>
-                  {/* Plus button with menu */}
+                  {/* Icons.plus button with menu */}
                   <div ref={menuRef} className="relative">
                     <button
                       onClick={() => setShowMenu((v) => !v)}
                       className="p-1.5 rounded-lg hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                     >
-                      <Plus className="w-4 h-4 text-purple-600" />
+                      <Icons.plus className="w-4 h-4 text-purple-600" />
                     </button>
                     {showMenu && (
                       <div
@@ -1076,14 +1064,14 @@ export default function Agents() {
                     className="flex-1 text-xs bg-transparent outline-none placeholder-gray-400"
                   />
 
-                  {/* Mic button */}
+                  {/* Icons.mic button */}
                   <button
                     onClick={startVoiceRecording}
                     className="p-1.5 rounded-lg hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                     title="Record a voice message"
                     aria-label="Start voice recording"
                   >
-                    <Mic className="w-4 h-4 text-gray-400" />
+                    <Icons.mic className="w-4 h-4 text-gray-400" />
                   </button>
 
                   <button
@@ -1108,7 +1096,7 @@ export default function Agents() {
                 onClick={() => setShowModal(true)}
                 className="flex items-center gap-1.5 bg-gradient-to-r from-purple-900 to-purple-600 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
               >
-                <Plus className="w-3 h-3" />
+                <Icons.plus className="w-3 h-3" />
                 Create Task
               </button>
             </div>
@@ -1124,13 +1112,13 @@ export default function Agents() {
                     onClick={prevMonth}
                     className="p-0.5 rounded hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.1] transition-all duration-200 ease-out active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.3)]"
                   >
-                    <ChevronLeft className="w-3 h-3 text-gray-400" />
+                    <Icons.chevronLeft className="w-3 h-3 text-gray-400" />
                   </button>
                   <button
                     onClick={nextMonth}
                     className="p-0.5 rounded hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.1] transition-all duration-200 ease-out active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.3)]"
                   >
-                    <ChevronRight className="w-3 h-3 text-gray-400" />
+                    <Icons.chevronRight className="w-3 h-3 text-gray-400" />
                   </button>
                 </div>
               </div>
@@ -1234,7 +1222,7 @@ export default function Agents() {
                   onClick={() => setShowModal(false)}
                   className="p-1 rounded-lg hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out"
                 >
-                  <X className="w-4 h-4 text-gray-400" />
+                  <Icons.x className="w-4 h-4 text-gray-400" />
                 </button>
               </div>
 
@@ -1365,9 +1353,9 @@ export default function Agents() {
               }`}
             >
               {toast.type === "error" ? (
-                <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+                <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
               ) : (
-                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                <Icons.checkCircle2 className="w-4 h-4 text-green-500 shrink-0" />
               )}
               <p className="text-xs font-medium text-gray-800">{toast.message}</p>
             </div>

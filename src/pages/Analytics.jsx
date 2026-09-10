@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Search, Bell } from "lucide-react";
+import { Icons } from "../components/ui/Icons";om "lucide-react";
 import {
   ResponsiveContainer,
   PieChart,
@@ -60,9 +59,9 @@ function formatDuration(ms) {
 }
 
 export default function Analytics() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = Icons.useState(null);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -179,7 +178,7 @@ export default function Analytics() {
           <Search className="w-4 h-4 text-gray-500" />
         </button>
         <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-          <Bell className="w-4 h-4 text-gray-500" />
+          <Icons.bell className="w-4 h-4 text-gray-500" />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
         </button>
         <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">

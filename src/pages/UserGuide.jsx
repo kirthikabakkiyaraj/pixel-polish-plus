@@ -1,26 +1,9 @@
-import { useState } from "react";
-import {
-  Rocket,
-  UserPlus,
-  LogIn,
-  LayoutDashboard,
-  Bot,
-  ClipboardList,
-  User,
-  Calendar,
-  Play,
-  Zap,
-  ShieldCheck,
-  Activity,
-  FileText,
-  UserCircle,
-  CheckCircle2,
-  XCircle,
-  AlertTriangle,
-  BookOpen,
-  Mic,
-  Paperclip,
-  Search,
+import { Icons } from "../components/ui/Icons";Icons.xCircle,
+  Icons.alertTriangle,
+  Icons.bookOpen,
+  Icons.mic,
+  Icons.paperclip,
+  Icons.search,
 } from "lucide-react";
 import TopBar from "../components/layout/TopBar";
 
@@ -54,9 +37,9 @@ function Bullets({ items, tone = "ok" }) {
           className="flex items-start gap-2.5 text-xs text-gray-600 leading-relaxed px-3 py-2.5 rounded-xl bg-gray-50/60 border border-gray-100/60 backdrop-blur-sm transition-all duration-200 hover:bg-purple-50/50 hover:border-purple-100/80"
         >
           {tone === "warn" ? (
-            <XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" />
+            <Icons.xCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" />
           ) : (
-            <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" />
+            <Icons.checkCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" />
           )}
           <span>{item}</span>
         </li>
@@ -117,7 +100,7 @@ const sections = [
           around using the sidebar on the left, which contains{" "}
           <Pill>New Task</Pill>, <Pill>Dashboard</Pill>, <Pill>Agents</Pill>,{" "}
           <Pill>Executions</Pill>, <Pill>Schedules</Pill>, <Pill>Settings</Pill>{" "}
-          and this <Pill>User Guide</Pill>. The top bar gives you a page search,{" "}
+          and this <Pill>Icons.user Guide</Pill>. The top bar gives you a page search,{" "}
           notifications, a help shortcut and your account menu.
         </P>
         <Bullets
@@ -139,7 +122,7 @@ const sections = [
   {
     id: "creating-account",
     label: "Creating an Account",
-    icon: UserPlus,
+    icon: Icons.userPlus,
     desc: "Registration is a three-step flow with email verification.",
     body: (
       <>
@@ -184,7 +167,7 @@ const sections = [
   {
     id: "login",
     label: "Login",
-    icon: LogIn,
+    icon: Icons.logIn,
     desc: "Signing in with your email address and password.",
     body: (
       <>
@@ -211,7 +194,7 @@ const sections = [
   {
     id: "dashboard",
     label: "Dashboard",
-    icon: LayoutDashboard,
+    icon: Icons.layoutDashboard,
     desc: "Your workspace overview and live numbers at a glance.",
     body: (
       <>
@@ -228,7 +211,7 @@ const sections = [
               matching page when clicked.
             </span>,
             <span key="d2">
-              <b className="text-gray-800">Task Activity This Week</b> — an area
+              <b className="text-gray-800">Task Icons.activity This Week</b> — an area
               chart of how many tasks were created or updated each day.
             </span>,
             <span key="d3">
@@ -240,7 +223,7 @@ const sections = [
               load bars (network load is reported as unavailable).
             </span>,
             <span key="d5">
-              <b className="text-gray-800">Recent Activity</b> — your latest five
+              <b className="text-gray-800">Recent Icons.activity</b> — your latest five
               activity events.
             </span>,
           ]}
@@ -259,7 +242,7 @@ const sections = [
   {
     id: "ai-chat",
     label: "AI Assistant & Chat",
-    icon: Bot,
+    icon: Icons.bot,
     desc: "Chatting with your AI agent, sharing files and recording voice messages.",
     body: (
       <>
@@ -289,7 +272,7 @@ const sections = [
             </span>,
             <span key="a4">
               <b className="text-gray-800">Voice messages</b> — press the{" "}
-              <IconPill icon={Mic}>microphone</IconPill> button to record (the
+              <IconPill icon={Icons.mic}>microphone</IconPill> button to record (the
               browser asks for mic permission). The recording is attached as a
               playable voice message.
             </span>,
@@ -319,7 +302,7 @@ const sections = [
   {
     id: "tasks",
     label: "Tasks",
-    icon: ClipboardList,
+    icon: Icons.clipboardList,
     desc: "Creating, viewing and managing the work your agents handle.",
     body: (
       <>
@@ -374,7 +357,7 @@ const sections = [
   {
     id: "assign-agent",
     label: "Assign Agent",
-    icon: User,
+    icon: Icons.user,
     desc: "Naming the agent that owns a task.",
     body: (
       <>
@@ -397,7 +380,7 @@ const sections = [
   {
     id: "scheduling",
     label: "Scheduling",
-    icon: Calendar,
+    icon: Icons.calendar,
     desc: "How tasks get triggered — once, daily, weekly or monthly.",
     body: (
       <>
@@ -445,7 +428,7 @@ const sections = [
   {
     id: "running-tasks",
     label: "Running Tasks",
-    icon: Play,
+    icon: Icons.play,
     desc: "How runs happen and where you watch them.",
     body: (
       <>
@@ -484,7 +467,7 @@ const sections = [
   {
     id: "executions",
     label: "Executions",
-    icon: Zap,
+    icon: Icons.zap,
     desc: "Every run of your tasks and how to read it.",
     body: (
       <>
@@ -517,7 +500,7 @@ const sections = [
   {
     id: "approvals",
     label: "Approvals",
-    icon: ShieldCheck,
+    icon: Icons.shieldCheck,
     desc: "Requests for a human decision before a run continues.",
     body: (
       <>
@@ -549,12 +532,12 @@ const sections = [
   {
     id: "activities",
     label: "Activities",
-    icon: Activity,
+    icon: Icons.activity,
     desc: "The full history of what happened in your workspace.",
     body: (
       <>
         <P>
-          The <Pill>Activity</Pill> page is a complete, time-ordered log of your
+          The <Pill>Icons.activity</Pill> page is a complete, time-ordered log of your
           workspace. Every meaningful event is recorded with a short message, a
           type badge and a timestamp.
         </P>
@@ -578,7 +561,7 @@ const sections = [
   {
     id: "artifacts",
     label: "Artifacts & Generated Results",
-    icon: FileText,
+    icon: Icons.fileText,
     desc: "The outputs and files your agents produce.",
     body: (
       <>
@@ -606,7 +589,7 @@ const sections = [
   {
     id: "profile",
     label: "Profile & Account",
-    icon: UserCircle,
+    icon: Icons.userCircle,
     desc: "Your personal details, account settings and activity.",
     body: (
       <>
@@ -621,7 +604,7 @@ const sections = [
               name, change your photo (JPG, PNG or WebP, up to 2 MB) and save your
               changes. Your email address is read-only. The page also shows counts
               for tasks created, approvals reviewed and total executions, plus a
-              Recent Activity list.
+              Recent Icons.activity list.
             </span>,
             <span key="p2">
               <b className="text-gray-800">Settings</b> — the same profile
@@ -640,7 +623,7 @@ const sections = [
   {
     id: "task-status",
     label: "Task Status Guide",
-    icon: CheckCircle2,
+    icon: Icons.checkCircle2,
     desc: "The statuses a task can move through.",
     body: (
       <>
@@ -683,7 +666,7 @@ const sections = [
   {
     id: "approval-status",
     label: "Approval Status Guide",
-    icon: ShieldCheck,
+    icon: Icons.shieldCheck,
     desc: "The statuses an approval request can take.",
     body: (
       <>
@@ -719,7 +702,7 @@ const sections = [
   {
     id: "troubleshooting",
     label: "Troubleshooting",
-    icon: AlertTriangle,
+    icon: Icons.alertTriangle,
     desc: "Common issues and how to resolve them.",
     body: (
       <>
@@ -774,7 +757,7 @@ const sections = [
   {
     id: "quick-start",
     label: "Quick Start",
-    icon: BookOpen,
+    icon: Icons.bookOpen,
     desc: "Five steps to your first automated workflow.",
     body: (
       <>
@@ -808,9 +791,9 @@ const sections = [
           ]}
         />
         <div className="flex items-center gap-2 pt-1">
-          <Paperclip className="w-3.5 h-3.5 text-gray-400" />
-          <Search className="w-3.5 h-3.5 text-gray-400" />
-          <Mic className="w-3.5 h-3.5 text-gray-400" />
+          <Icons.paperclip className="w-3.5 h-3.5 text-gray-400" />
+          <Icons.search className="w-3.5 h-3.5 text-gray-400" />
+          <Icons.mic className="w-3.5 h-3.5 text-gray-400" />
           <span className="text-[10px] text-gray-400">
             Anything else? Use the top-bar search to jump to a page — including
             this guide.
@@ -841,7 +824,7 @@ export default function UserGuide() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-500 bg-clip-text text-transparent">
-              User Guide
+              Icons.user Guide
             </h1>
             <p className="text-sm text-gray-500 mt-0.5 max-w-2xl">
               Everything you need to get started with Aether Platform — tasks,
@@ -857,7 +840,7 @@ export default function UserGuide() {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100/70 shadow-sm p-4">
               <h2 className="flex items-center gap-2 text-xs font-bold text-gray-900 mb-3 px-1">
                 <span className="w-4 h-4 rounded bg-purple-100 flex items-center justify-center">
-                  <BookOpen className="w-3 h-3 text-purple-600" />
+                  <Icons.bookOpen className="w-3 h-3 text-purple-600" />
                 </span>
                 On this page
               </h2>

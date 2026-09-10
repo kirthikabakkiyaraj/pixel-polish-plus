@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Bot, Search, Bell, XCircle, CheckCircle2 } from "lucide-react";
+import { Icons } from "../components/ui/Icons";ircle, Icons.checkCircle2 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { approvalApi } from "../services/approval.api";
 import { taskApi } from "../services/task.api";
@@ -13,11 +11,11 @@ function formatDate(value) {
 
 export default function PendingApprovals() {
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
-  const [tasks, setTasks] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [toast, setToast] = useState(null);
+  const [items, setItems] = Icons.useState([]);
+  const [tasks, setTasks] = Icons.useState({});
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+  const [toast, setToast] = Icons.useState(null);
   const toastTimer = useRef(null);
 
   const showToast = (message, type = "success") => {
@@ -26,11 +24,11 @@ export default function PendingApprovals() {
     toastTimer.current = setTimeout(() => setToast(null), 3000);
   };
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     return () => clearTimeout(toastTimer.current);
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     approvalApi
       .getPending()
@@ -49,7 +47,7 @@ export default function PendingApprovals() {
     return () => { cancelled = true; };
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     taskApi
       .getAll()
@@ -94,10 +92,10 @@ export default function PendingApprovals() {
       {/* Top Navbar */}
         <div className="flex items-center justify-end gap-4">
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <Search className="w-4 h-4 text-gray-500" />
+            <Icons.search className="w-4 h-4 text-gray-500" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-            <Bell className="w-4 h-4 text-gray-500" />
+            <Icons.bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
@@ -147,7 +145,7 @@ export default function PendingApprovals() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
-                        <Bot className="w-4 h-4 text-white" />
+                        <Icons.bot className="w-4 h-4 text-white" />
                       </div>
                       <p className="text-sm font-bold text-gray-900">
                         {task.title || `Task ${item.taskId}`}
@@ -196,9 +194,9 @@ export default function PendingApprovals() {
             }`}
           >
             {toast.type === "error" ? (
-              <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+              <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
             ) : (
-              <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+              <Icons.checkCircle2 className="w-4 h-4 text-green-500 shrink-0" />
             )}
             <p className="text-xs font-medium text-gray-800">{toast.message}</p>
           </div>

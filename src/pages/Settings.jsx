@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect, useContext } from "react";
-import { CheckCircle2, XCircle } from "lucide-react";
+import { Icons } from "../components/ui/Icons";xCircle } from "lucide-react";
 import Toggle from "../components/ui/Toggle";
 import TopBar from "../components/layout/TopBar";
 import { userApi } from "../services/user.api";
@@ -7,25 +6,25 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function Settings() {
   const { user, updateUser } = useContext(AuthContext);
-  const [firstName, setFirstName] = useState(user?.firstName || "");
-  const [lastName, setLastName] = useState(user?.lastName || "");
-  const [email, setEmail] = useState(user?.email || "");
+  const [firstName, setFirstName] = Icons.useState(user?.firstName || "");
+  const [lastName, setLastName] = Icons.useState(user?.lastName || "");
+  const [email, setEmail] = Icons.useState(user?.email || "");
   const role = "Workspace Administrator";
-  const [avatar, setAvatar] = useState(user?.avatar || null);
-  const fileInputRef = useRef(null);
-  const [saving, setSaving] = useState(false);
-  const [profileError, setProfileError] = useState(null);
+  const [avatar, setAvatar] = Icons.useState(user?.avatar || null);
+  const fileInputRef = Icons.useRef(null);
+  const [saving, setSaving] = Icons.useState(false);
+  const [profileError, setProfileError] = Icons.useState(null);
 
-  const [toast, setToast] = useState(null);
-  const toastTimer = useRef(null);
+  const [toast, setToast] = Icons.useState(null);
+  const toastTimer = Icons.useRef(null);
   const showToast = (msg, error = false) => {
     clearTimeout(toastTimer.current);
     setToast({ msg, error });
     toastTimer.current = setTimeout(() => setToast(null), 3000);
   };
-  useEffect(() => () => clearTimeout(toastTimer.current), []);
+  Icons.useEffect(() => () => clearTimeout(toastTimer.current), []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     userApi
       .getProfile()
@@ -227,7 +226,7 @@ export default function Settings() {
           <div className="fixed top-5 right-5 z-[100]" style={{ animation: "fadeIn 0.15s ease-out" }}>
             <div className="flex items-center gap-2.5 bg-white border border-green-200 rounded-xl shadow-lg px-4 py-3 min-w-[240px]">
               {toast.error ? (
-                <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+                <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
               ) : (
                 <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
               )}

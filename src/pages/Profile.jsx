@@ -1,10 +1,5 @@
-import { useState, useRef, useEffect, useContext } from "react";
-import {
-  CheckCircle2,
-  XCircle,
-  Camera,
-  ClipboardCheck,
-  Bot,
+import { Icons } from "../components/ui/Icons";pboardCheck,
+  Icons.bot,
 } from "lucide-react";
 import TopBar from "../components/layout/TopBar";
 import { userApi } from "../services/user.api";
@@ -26,41 +21,41 @@ function formatStatValue(value) {
 
 export default function Profile() {
   const { user, updateUser } = useContext(AuthContext);
-  const [firstName, setFirstName] = useState(user?.firstName || "");
-  const [lastName, setLastName] = useState(user?.lastName || "");
-  const [email, setEmail] = useState(user?.email || "");
-  const [avatar, setAvatar] = useState(user?.avatar || null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
-  const fileInputRef = useRef(null);
+  const [firstName, setFirstName] = Icons.useState(user?.firstName || "");
+  const [lastName, setLastName] = Icons.useState(user?.lastName || "");
+  const [email, setEmail] = Icons.useState(user?.email || "");
+  const [avatar, setAvatar] = Icons.useState(user?.avatar || null);
+  const [selectedFile, setSelectedFile] = Icons.useState(null);
+  const [previewUrl, setPreviewUrl] = Icons.useState(null);
+  const fileInputRef = Icons.useRef(null);
   const role = "Workspace Administrator";
-  const [showAllActivity, setShowAllActivity] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [profileError, setProfileError] = useState(null);
-  const [stats, setStats] = useState(null);
-  const [statsError, setStatsError] = useState(null);
-  const [activityItems, setActivityItems] = useState([]);
-  const [extraActivityItems, setExtraActivityItems] = useState([]);
-  const [activityError, setActivityError] = useState(null);
+  const [showAllActivity, setShowAllActivity] = Icons.useState(false);
+  const [saving, setSaving] = Icons.useState(false);
+  const [profileError, setProfileError] = Icons.useState(null);
+  const [stats, setStats] = Icons.useState(null);
+  const [statsError, setStatsError] = Icons.useState(null);
+  const [activityItems, setActivityItems] = Icons.useState([]);
+  const [extraActivityItems, setExtraActivityItems] = Icons.useState([]);
+  const [activityError, setActivityError] = Icons.useState(null);
 
   // Toast
-  const [toast, setToast] = useState(null);
-  const toastTimer = useRef(null);
+  const [toast, setToast] = Icons.useState(null);
+  const toastTimer = Icons.useRef(null);
   const showToast = (msg, error = false) => {
     clearTimeout(toastTimer.current);
     setToast({ msg, error });
     toastTimer.current = setTimeout(() => setToast(null), 3000);
   };
-  useEffect(() => () => clearTimeout(toastTimer.current), []);
+  Icons.useEffect(() => () => clearTimeout(toastTimer.current), []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
   }, [previewUrl]);
 
   // Fetch real profile from backend
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     userApi
       .getProfile()
@@ -83,7 +78,7 @@ export default function Profile() {
   }, []);
 
   // Fetch real statistics from analytics
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     analyticsApi
       .get()
@@ -109,7 +104,7 @@ export default function Profile() {
     };
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     activityApi
       .getAll()
@@ -139,9 +134,9 @@ export default function Profile() {
     : activityItems;
 
   const statCards = [
-    { label: "Tasks Created", value: stats ? formatStatValue(stats.tasksCreated) : "—", icon: ClipboardCheck },
+    { label: "Tasks Created", value: stats ? formatStatValue(stats.tasksCreated) : "—", icon: Icons.clipboardCheck },
     { label: "Approvals Reviewed", value: stats ? formatStatValue(stats.approvalsReviewed) : "—", icon: CheckCircle2 },
-    { label: "Total Executions", value: stats ? formatStatValue(stats.totalExecutions) : "—", icon: Bot },
+    { label: "Total Executions", value: stats ? formatStatValue(stats.totalExecutions) : "—", icon: Icons.bot },
   ];
 
   const initials = (
@@ -261,7 +256,7 @@ export default function Profile() {
               onClick={() => fileInputRef.current?.click()}
               className="text-[11px] text-gray-400 hover:text-purple-600 hover:-translate-y-0.5 transition-all duration-200 ease-out flex items-center gap-1"
             >
-              <Camera className="w-3 h-3" />
+              <Icons.camera className="w-3 h-3" />
               Change Photo
             </button>
           </div>
@@ -359,7 +354,7 @@ export default function Profile() {
                 className="flex items-center gap-4 px-6 py-3.5 hover:bg-gray-50 transition"
               >
                 <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
-                  <Bot className="w-4 h-4 text-purple-500" />
+                  <Icons.bot className="w-4 h-4 text-purple-500" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-gray-800 break-words">{item.text}</p>
@@ -385,7 +380,7 @@ export default function Profile() {
             }`}
           >
             {toast.error ? (
-              <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+              <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
             ) : (
               <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
             )}

@@ -1,38 +1,37 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { X, Mic, Send, Plus, FileText, Image, Camera, Upload, Loader, Paperclip } from "lucide-react";
+import { Icons } from "../components/ui/Icons";ons.camera, Icons.upload, Icons.loader, Icons.paperclip } from "lucide-react";
 import { aiApi } from "../services/ai.api";
 import { artifactApi } from "../services/artifact.api";
 import fiscaRobot from "../assets/fisca-robot-full.png";
 
 const MENU_ITEMS = [
-  { label: "Upload Files", icon: FileText, accept: "*/*" },
-  { label: "Photos", icon: Image, accept: "image/*" },
-  { label: "Screenshot", icon: Camera, accept: null },
+  { label: "Icons.upload Files", icon: Icons.fileText, accept: "*/*" },
+  { label: "Photos", icon: Icons.image, accept: "image/*" },
+  { label: "Screenshot", icon: Icons.camera, accept: null },
 ];
 
 const VOICE_THREAD_ID = "fisca";
 
 export default function VoiceChatOverlay({ onClose }) {
-  const [input, setInput] = useState("");
-  const [isListening, setIsListening] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [hasSent, setHasSent] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const chatEndRef = useRef(null);
-  const menuRef = useRef(null);
-  const fileInputRef = useRef(null);
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [uploadingFiles, setUploadingFiles] = useState(false);
-  const mediaRecorderRef = useRef(null);
-  const streamRef = useRef(null);
-  const audioChunksRef = useRef([]);
-  const recordingMimeRef = useRef(null);
-  const voiceIdRef = useRef(0);
-  const audioCtxRef = useRef(null);
-  const analyserRef = useRef(null);
-  const rafRef = useRef(null);
-  const waveformRef = useRef(null);
+  const [input, setInput] = Icons.useState("");
+  const [isListening, setIsListening] = Icons.useState(false);
+  const [showMenu, setShowMenu] = Icons.useState(false);
+  const [messages, setMessages] = Icons.useState([]);
+  const [hasSent, setHasSent] = Icons.useState(false);
+  const [isSending, setIsSending] = Icons.useState(false);
+  const chatEndRef = Icons.useRef(null);
+  const menuRef = Icons.useRef(null);
+  const fileInputRef = Icons.useRef(null);
+  const [selectedFiles, setSelectedFiles] = Icons.useState([]);
+  const [uploadingFiles, setUploadingFiles] = Icons.useState(false);
+  const mediaRecorderRef = Icons.useRef(null);
+  const streamRef = Icons.useRef(null);
+  const audioChunksRef = Icons.useRef([]);
+  const recordingMimeRef = Icons.useRef(null);
+  const voiceIdRef = Icons.useRef(0);
+  const audioCtxRef = Icons.useRef(null);
+  const analyserRef = Icons.useRef(null);
+  const rafRef = Icons.useRef(null);
+  const waveformRef = Icons.useRef(null);
   const WAVEFORM_BARS = 7;
 
   const chooseRecordingMime = () => {
@@ -119,18 +118,18 @@ export default function VoiceChatOverlay({ onClose }) {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     return () => {
       stopWaveform();
       stopMediaStream();
     };
   }, []);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     if (!showMenu) return;
     const handleClick = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -148,7 +147,7 @@ export default function VoiceChatOverlay({ onClose }) {
     };
   }, [showMenu]);
 
-  useEffect(() => {
+  Icons.useEffect(() => {
     let cancelled = false;
     aiApi
       .history(VOICE_THREAD_ID)
@@ -671,7 +670,7 @@ export default function VoiceChatOverlay({ onClose }) {
                           key={i}
                           style={{ display: "flex", alignItems: "center", gap: 8, color: "#fff" }}
                         >
-                          <Paperclip style={{ width: 16, height: 16 }} />
+                          <Icons.paperclip style={{ width: 16, height: 16 }} />
                           <span>{name}</span>
                         </div>
                       ))}
@@ -686,7 +685,7 @@ export default function VoiceChatOverlay({ onClose }) {
                         color: "#fff",
                       }}
                     >
-                      <Paperclip style={{ width: 16, height: 16 }} />
+                      <Icons.paperclip style={{ width: 16, height: 16 }} />
                       <span>{msg.text}</span>
                     </div>
                   ) : msg.type === "audio" && msg.url ? (
@@ -699,7 +698,7 @@ export default function VoiceChatOverlay({ onClose }) {
                           color: "#fff",
                         }}
                       >
-                        <Mic style={{ width: 16, height: 16 }} />
+                        <Icons.mic style={{ width: 16, height: 16 }} />
                         <span>Voice message</span>
                       </div>
                       <audio controls src={msg.url} style={{ width: 220, height: 36 }} />
@@ -763,7 +762,7 @@ export default function VoiceChatOverlay({ onClose }) {
           style={{ display: "none" }}
         />
 
-        {/* Queued files + Upload */}
+        {/* Queued files + Icons.upload */}
         {selectedFiles.length > 0 && (
           <div
             style={{
@@ -796,7 +795,7 @@ export default function VoiceChatOverlay({ onClose }) {
                     fontFamily: "system-ui, sans-serif",
                   }}
                 >
-                  <Paperclip style={{ width: 14, height: 14 }} />
+                  <Icons.paperclip style={{ width: 14, height: 14 }} />
                   <span>{f.name}</span>
                   <button
                     onClick={() => removeSelectedFile(i)}
@@ -835,13 +834,13 @@ export default function VoiceChatOverlay({ onClose }) {
               }}
             >
               {uploadingFiles ? (
-                <Loader className="animate-spin" style={{ width: 16, height: 16, color: "#fff" }} />
+                <Icons.loader className="animate-spin" style={{ width: 16, height: 16, color: "#fff" }} />
               ) : (
-                <Upload style={{ width: 16, height: 16, color: "#fff" }} />
+                <Icons.upload style={{ width: 16, height: 16, color: "#fff" }} />
               )}
               {uploadingFiles
                 ? "Uploading..."
-                : `Upload ${selectedFiles.length === 1 ? "File" : "Files"}`}
+                : `Icons.upload ${selectedFiles.length === 1 ? "File" : "Files"}`}
             </button>
           </div>
         )}
@@ -860,7 +859,7 @@ export default function VoiceChatOverlay({ onClose }) {
             boxShadow: "0 4px 24px rgba(109,40,217,0.12), inset 0 1px 0 rgba(255,255,255,0.8)",
           }}
         >
-          {/* Plus / attachment button */}
+          {/* Icons.plus / attachment button */}
           <div ref={menuRef} style={{ position: "relative" }}>
             <button
               onClick={() => setShowMenu((v) => !v)}
@@ -876,7 +875,7 @@ export default function VoiceChatOverlay({ onClose }) {
                 justifyContent: "center",
               }}
             >
-              <Plus style={{ width: 18, height: 18, color: "#7c3aed" }} />
+              <Icons.plus style={{ width: 18, height: 18, color: "#7c3aed" }} />
             </button>
             {showMenu && (
               <div
@@ -948,7 +947,7 @@ export default function VoiceChatOverlay({ onClose }) {
             }}
           />
 
-          {/* Mic button with pulsing rings */}
+          {/* Icons.mic button with pulsing rings */}
           <button
             onClick={toggleListening}
             aria-label={isListening ? "Stop listening" : "Start listening"}
@@ -1017,14 +1016,14 @@ export default function VoiceChatOverlay({ onClose }) {
                 ))}
               </div>
             ) : (
-              <Mic style={{ width: 18, height: 18, color: "#7c3aed" }} />
+              <Icons.mic style={{ width: 18, height: 18, color: "#7c3aed" }} />
             )}
           </button>
 
-          {/* Send button */}
+          {/* Icons.send button */}
           <button
             onClick={sendMessage}
-            aria-label="Send message"
+            aria-label="Icons.send message"
             style={{
               padding: 8,
               borderRadius: "50%",
@@ -1037,7 +1036,7 @@ export default function VoiceChatOverlay({ onClose }) {
               transition: "background 0.15s",
             }}
           >
-            <Send
+            <Icons.send
               style={{
                 width: 18,
                 height: 18,

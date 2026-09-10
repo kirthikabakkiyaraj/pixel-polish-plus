@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Bot, Search, Bell } from "lucide-react";
+import { Icons } from "../components/ui/Icons";ns.bell } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { approvalApi } from "../services/approval.api";
 import { taskApi } from "../services/task.api";
@@ -28,11 +26,11 @@ const tabs = ["All", "Pending", "Approved", "Rejected"];
 
 export default function Approvals() {
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
-  const [tasks, setTasks] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState("All");
+  const [items, setItems] = Icons.useState([]);
+  const [tasks, setTasks] = Icons.useState({});
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+  const [activeTab, setActiveTab] = Icons.useState("All");
 
   useEffect(() => {
     let cancelled = false;
@@ -78,10 +76,10 @@ export default function Approvals() {
       {/* Top Navbar */}
         <div className="flex items-center justify-end gap-4">
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <Search className="w-4 h-4 text-gray-500" />
+            <Icons.search className="w-4 h-4 text-gray-500" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
-            <Bell className="w-4 h-4 text-gray-500" />
+            <Icons.bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
           <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
@@ -148,14 +146,14 @@ export default function Approvals() {
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
-                      <Bot className="w-4 h-4 text-white" />
+                      <Icons.bot className="w-4 h-4 text-white" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-gray-900 truncate">
                         {task.title || `Task ${item.taskId}`}
                       </p>
                       <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-gray-400">
-                        <Bot className="w-3 h-3" />
+                        <Icons.bot className="w-3 h-3" />
                         <span>Execution {item.executionId}</span>
                         <span>&middot;</span>
                         <span>{formatDate(item.createdAt)}</span>

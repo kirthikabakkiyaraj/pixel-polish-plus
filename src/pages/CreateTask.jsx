@@ -1,9 +1,4 @@
-import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  XCircle,
+import { Icons } from "../components/ui/Icons";Circle,
 } from "lucide-react";
 import TopBar from "../components/layout/TopBar";
 import { taskApi } from "../services/task.api";
@@ -19,22 +14,22 @@ const steps = ["Details", "Schedule", "Review"];
 
 export default function CreateTask() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = Icons.useState(1);
 
   // Step 1
-  const [taskName, setTaskName] = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("Medium");
+  const [taskName, setTaskName] = Icons.useState("");
+  const [description, setDescription] = Icons.useState("");
+  const [priority, setPriority] = Icons.useState("Medium");
 
   // Step 2
-  const [scheduleType, setScheduleType] = useState("once");
-  const [nextRunAt, setNextRunAt] = useState(defaultNextRun);
-  const [frequency, setFrequency] = useState("daily");
-  const [runWithoutApproval, setRunWithoutApproval] = useState(false);
+  const [scheduleType, setScheduleType] = Icons.useState("once");
+  const [nextRunAt, setNextRunAt] = Icons.useState(defaultNextRun);
+  const [frequency, setFrequency] = Icons.useState("daily");
+  const [runWithoutApproval, setRunWithoutApproval] = Icons.useState(false);
 
   // Toast
-  const [toast, setToast] = useState(null);
-  const toastTimer = useRef(null);
+  const [toast, setToast] = Icons.useState(null);
+  const toastTimer = Icons.useRef(null);
   const showToast = (message, type = "success") => {
     clearTimeout(toastTimer.current);
     setToast({ message, type });
@@ -122,7 +117,7 @@ export default function CreateTask() {
                   }`}
                 >
                   {isDone ? (
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <Icons.checkCircle2 className="w-3.5 h-3.5" />
                   ) : (
                     num
                   )}
@@ -388,9 +383,9 @@ export default function CreateTask() {
             }`}
           >
             {toast.type === "error" ? (
-              <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+              <Icons.xCircle className="w-4 h-4 text-red-500 shrink-0" />
             ) : (
-              <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+              <Icons.checkCircle2 className="w-4 h-4 text-green-500 shrink-0" />
             )}
             <p className="text-xs font-medium text-gray-800">{toast.message}</p>
           </div>

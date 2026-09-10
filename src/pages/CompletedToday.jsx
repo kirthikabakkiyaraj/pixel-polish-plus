@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle2, Bot, Filter } from "lucide-react";
+import { Icons } from "../components/ui/Icons";.filter } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { taskApi } from "../services/task.api";
 
@@ -18,9 +16,9 @@ function getPeriod(time) {
 
 export default function CompletedToday() {
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [tasks, setTasks] = Icons.useState([]);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -72,8 +70,8 @@ export default function CompletedToday() {
             Today
           </button>
           <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <Filter className="w-3 h-3" />
-            Filter
+            <Icons.filter className="w-3 h-3" />
+            Icons.filter
           </button>
         </div>
       </div>
@@ -102,13 +100,13 @@ export default function CompletedToday() {
                 className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
               >
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
+                  <Icons.checkCircle2 className="w-5 h-5 text-green-500 shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-gray-900">
                       {task.title}
                     </p>
                     <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-gray-400">
-                      <Bot className="w-3 h-3" />
+                      <Icons.bot className="w-3 h-3" />
                       <span>{task.agent || "—"}</span>
                       <span>&middot;</span>
                       <span>{task.time || "—"}</span>

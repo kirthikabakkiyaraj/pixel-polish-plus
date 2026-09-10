@@ -1,11 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-  MoreHorizontal,
-  Filter,
-  BarChart3,
-  Loader2,
+import { Icons } from "../components/ui/Icons";cons.loader2,
 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { executionApi } from "../services/execution.api";
@@ -13,9 +6,9 @@ import { taskApi } from "../services/task.api";
 
 export default function AgentsRunning() {
   const navigate = useNavigate();
-  const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [rows, setRows] = Icons.useState([]);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -84,14 +77,14 @@ export default function AgentsRunning() {
           )}
         </div>
         <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-          <Filter className="w-3 h-3" />
-          Filter
+          <Icons.filter className="w-3 h-3" />
+          Icons.filter
         </button>
       </div>
 
       {loading ? (
         <div className="flex items-center justify-center py-16 text-sm text-gray-400 gap-2">
-          <Loader2 className="w-4 h-4 animate-spin" />
+          <Icons.loader2 className="w-4 h-4 animate-spin" />
           Loading running agents...
         </div>
       ) : error ? (
@@ -100,7 +93,7 @@ export default function AgentsRunning() {
         </div>
       ) : runningCount === 0 ? (
         <div className="py-16 text-center">
-          <BarChart3 className="w-8 h-8 text-gray-300 mx-auto mb-3" />
+          <Icons.barChart3 className="w-8 h-8 text-gray-300 mx-auto mb-3" />
           <p className="text-sm text-gray-500">
             No agents are currently running.
           </p>
@@ -127,7 +120,7 @@ export default function AgentsRunning() {
                   </div>
                 </div>
                 <button className="p-1 rounded hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out">
-                  <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                  <Icons.moreHorizontal className="w-4 h-4 text-gray-400" />
                 </button>
               </div>
 

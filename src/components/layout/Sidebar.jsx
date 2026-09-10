@@ -1,21 +1,14 @@
-import { NavLink, Link } from "react-router-dom";
-import {
-  LayoutDashboard,
-  Users,
-  Play,
-  Settings,
-  Plus,
-  BookOpen,
-  Calendar,
-  Zap,
+import { Icons } from "../../components/ui/Icons";
+  Icons.calendar,
+  Icons.zap,
 } from "lucide-react";
 
 const navItems = [
   { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-  { to: "/agents", icon: Users, label: "Agents" },
-  { to: "/executions", icon: Play, label: "Executions" },
-  { to: "/schedules", icon: Calendar, label: "Schedules" },
-  { to: "/settings", icon: Settings, label: "Settings" },
+  { to: "/agents", icon: Icons.users, label: "Agents" },
+  { to: "/executions", icon: Icons.play, label: "Executions" },
+  { to: "/schedules", icon: Icons.calendar, label: "Schedules" },
+  { to: "/settings", icon: Icons.settings, label: "Icons.settings" },
 ];
 
 export default function Sidebar() {
@@ -27,7 +20,7 @@ export default function Sidebar() {
           className="flex items-center gap-3 mb-8 hover:opacity-80 transition cursor-pointer"
         >
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-400 to-indigo-700 flex items-center justify-center shrink-0">
-            <Zap className="w-4 h-4 text-white" />
+            <Icons.zap className="w-4 h-4 text-white" />
           </div>
           <div>
             <p className="text-sm font-bold text-gray-900 leading-tight">
@@ -39,17 +32,17 @@ export default function Sidebar() {
           </div>
         </Link>
 
-        <NavLink
+        <Icons.navLink
           to="/tasks/create"
           className="w-full flex items-center justify-center gap-2 bg-purple-600 text-white text-xs font-semibold py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out mb-6"
         >
-          <Plus className="w-3.5 h-3.5" />
+          <Icons.plus className="w-3.5 h-3.5" />
           New Task
-        </NavLink>
+        </Icons.navLink>
 
         <nav className="flex flex-col gap-1">
           {navItems.map((item) => (
-            <NavLink
+            <Icons.navLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
@@ -72,7 +65,7 @@ export default function Sidebar() {
                   {item.label}
                 </>
               )}
-            </NavLink>
+            </Icons.navLink>
           ))}
         </nav>
       </div>
@@ -81,7 +74,7 @@ export default function Sidebar() {
         to="/user-guide"
         className="group flex items-center justify-center gap-2 px-3 py-2 rounded-full border border-purple-200 bg-white/80 text-xs font-semibold text-gray-600 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
       >
-        <BookOpen className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-purple-500" />
+        <Icons.bookOpen className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-purple-500" />
         User Guide
       </Link>
     </aside>

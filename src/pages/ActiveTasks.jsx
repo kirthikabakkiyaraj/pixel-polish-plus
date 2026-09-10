@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft, MoreHorizontal, ChevronDown } from "lucide-react";
+import { Icons } from "../components/ui/Icons";n } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { taskApi } from "../services/task.api";
 
@@ -16,11 +14,11 @@ const ACTIVE_STATUSES = ["pending", "in_progress"];
 
 export default function ActiveTasks() {
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [agentFilter, setAgentFilter] = useState("All Agents");
-  const [highPriorityOnly, setHighPriorityOnly] = useState(false);
+  const [tasks, setTasks] = Icons.useState([]);
+  const [loading, setLoading] = Icons.useState(true);
+  const [error, setError] = Icons.useState(null);
+  const [agentFilter, setAgentFilter] = Icons.useState("All Agents");
+  const [highPriorityOnly, setHighPriorityOnly] = Icons.useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -88,7 +86,7 @@ export default function ActiveTasks() {
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400 pointer-events-none" />
+            <Icons.chevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400 pointer-events-none" />
           </div>
           <button
             onClick={() => setHighPriorityOnly((v) => !v)}
@@ -166,7 +164,7 @@ export default function ActiveTasks() {
               </div>
 
               <button className="p-1 rounded hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out shrink-0">
-                <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                <Icons.moreHorizontal className="w-4 h-4 text-gray-400" />
               </button>
             </div>
           ))}

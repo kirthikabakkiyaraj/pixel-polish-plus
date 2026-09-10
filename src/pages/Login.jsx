@@ -1,19 +1,17 @@
-import { useState, useContext, useCallback } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Mail, Lock, ArrowRight, LayoutDashboard, Eye, EyeOff } from "lucide-react";
+import { Icons } from "../components/ui/Icons";hboard, Icons.eye, Icons.eyeOff } from "lucide-react";
 import robotMascot from "../assets/robot-mascot.png";
 import { AuthContext } from "../context/AuthContext";
 import GoogleSignInButton from "../components/auth/GoogleSignInButton";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, loginWithGoogle } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [googleSubmitting, setGoogleSubmitting] = useState(false);
+  const { login, loginWithGoogle } = Icons.useContext(AuthContext);
+  const [email, setEmail] = Icons.useState("");
+  const [password, setPassword] = Icons.useState("");
+  const [showPassword, setShowPassword] = Icons.useState(false);
+  const [error, setError] = Icons.useState("");
+  const [submitting, setSubmitting] = Icons.useState(false);
+  const [googleSubmitting, setGoogleSubmitting] = Icons.useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +59,7 @@ export default function Login() {
       
       {/* Top label */}
       <div className="flex items-center gap-2 text-gray-600 text-sm font-medium mb-6 max-w-4xl mx-auto">
-        <LayoutDashboard className="w-4 h-4" />
+        <Icons.layoutDashboard className="w-4 h-4" />
         Login / Register
       </div>
 
@@ -126,7 +124,7 @@ export default function Login() {
                 </a>
               </div>
               <div className="mt-1 flex items-center border rounded-lg px-3 py-2 bg-gray-50">
-                <Lock className="w-4 h-4 text-gray-400 mr-2" />
+                <Icons.lock className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
@@ -140,7 +138,7 @@ export default function Login() {
                   onClick={() => setShowPassword((v) => !v)}
                   className="ml-2 text-gray-400 hover:text-gray-600 transition"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <Icons.eyeOff className="w-4 h-4" /> : <Icons.eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
@@ -153,7 +151,7 @@ export default function Login() {
               {submitting ? (
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
-                <>Sign In <ArrowRight className="w-4 h-4" /></>
+                <>Sign In <Icons.arrowRight className="w-4 h-4" /></>
               )}
             </button>
           </form>
